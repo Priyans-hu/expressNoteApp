@@ -8,6 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 const db = require('./data/db.json');
 const dbPath = './data/db.json';
 
+app.use(express.static('public'));
 app.use(express.json());
 
 // Handleing the API request
@@ -16,6 +17,7 @@ app.get('/api/notes/', (req, res) => {
     fs.readFile(dbPath, 'utf8', (err, data) => {
         if (data) {
             res.send(JSON.parse(data)).statusCode = 200;
+            console.log(JSON.parse(data));
         } else {
             console.log(err);
             res.send(err).statusCode = 500;

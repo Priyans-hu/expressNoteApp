@@ -1,0 +1,10 @@
+.fa-trash{
+    color: initial;
+    margin-right: 1em;
+}
+
+.fa-trash:hover{
+    color: red;
+    cursor: pointer;
+    transform: scale(1.1);
+}
