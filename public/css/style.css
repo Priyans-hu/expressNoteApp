@@ -1,3 +1,7 @@
+ul li:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .fa-trash{
     color: initial;
     margin-right: 1em;

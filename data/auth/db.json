@@ -8,14 +8,12 @@
                 {
                     "id": 1,
                     "title": "Note 1",
-                    "content": "This is the content of Note 1",
-                    "timestamp": "2023-01-01T12:00:00Z"
+                    "content": "This is the content of Note 1"
                 },
                 {
                     "id": 2,
                     "title": "Note 2",
-                    "content": "This is the content of Note 2",
-                    "timestamp": "2023-01-02T15:30:00Z"
+                    "content": "This is the content of Note 2"
                 }
             ]
         },
@@ -27,8 +25,7 @@
                 {
                     "id": 1,
                     "title": "Note 1",
-                    "content": "This is the content of Note 1 for user2",
-                    "timestamp": "2023-01-03T08:45:00Z"
+                    "content": "This is the content of Note 1 for user2"
                 }
             ]
         }
