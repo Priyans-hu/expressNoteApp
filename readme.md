@@ -17,7 +17,6 @@ This is a simple Express.js-based notes app that allows users to create, view, a
 
 - **Express.js:** A minimal and flexible Node.js web application framework.
 - **Node.js:** A JavaScript runtime for building server-side applications.
-- **[Insert Any Other Libraries/Frameworks Used]**
 
 ## Getting Started
 
