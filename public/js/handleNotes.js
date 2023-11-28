@@ -11,10 +11,22 @@ const getNotes = () => {
         });
 };
 
+const getActiveNote = (noteID) => {
+    return fetch(`/api/notes/${noteID}`, {
+        method: 'GET',
+        headers: { 'content-type': 'application/json' }
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        } else {
+            return response.json(); 
+        }
+    })
+}
+
 const renderSavedNotes = () => {
     getNotes().then(notes => {
         console.log(notes);
-        // Now 'notes' is an array of objects
         if (notes.length <= 0) {
             document.getElementById('noteList').innerHTML = `
                 <li type="none" class="rounded border p-2 my-1 d-flex justify-content-between align-items-center">
@@ -27,7 +39,7 @@ const renderSavedNotes = () => {
             notes.forEach(note => {
                 document.getElementById('noteList').innerHTML += `
                     <li type='none' class='rounded border border-1 p-2 my-1 d-flex justify-content-between align-items-center' 
-                        onClick="renderActiveNote(${JSON.stringify(note)})">
+                        onClick="renderActiveNote(event)" data=${note.id}>
                         <p class="p-0 m-2">${note.title}</p>
                         <i class="fa-solid fa-trash" data-hash-key="${note.id}" onclick="deleteNote(event)"></i>
                     </li>
@@ -37,15 +49,17 @@ const renderSavedNotes = () => {
     });
 }
 
-const renderActiveNote = (noteString) => {
-    const note = JSON.parse(noteString);
-    console.log(note);
-    document.getElementById('activeNote').innerHTML = `
-    <div>
-        <h2>${note.title}</h2>
-        <p>${note.description}</p>
-    </div>
-    `;
+const renderActiveNote = (event) => {
+    const noteID = event.target.getAttribute('data');
+    getActiveNote(noteID).then((note) => {
+        console.log(note);
+        document.getElementById('activeNote').innerHTML = `
+        <div>
+            <h2>${note[0].title}</h2>
+            <p>${note[0].description}</p>
+        </div>
+        `;
+    })
 }
 
 const deleteNote = (event) => {

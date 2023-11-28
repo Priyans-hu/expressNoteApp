@@ -1,5 +1,4 @@
 // Imports and declarations
-const { randomUUID } = require('crypto');
 const express = require('express');
 const fs = require('fs');
 const app = express();
@@ -18,6 +17,20 @@ app.get('/api/notes/', (req, res) => {
         if (data) {
             res.send(JSON.parse(data)).statusCode = 200;
             console.log(JSON.parse(data));
+        } else {
+            console.log(err);
+            res.send(err).statusCode = 500;
+        }
+    })
+})
+
+app.get('/api/notes/:id', (req, res) => {
+    fs.readFile(dbPath, 'utf8', (err, data) => {
+        if (data) {
+            data = JSON.parse(data);
+            const reqNote = data.filter(note => note.id === req.params.id);
+            res.send(reqNote).statusCode = 200;
+            console.log(reqNote);
         } else {
             console.log(err);
             res.send(err).statusCode = 500;
